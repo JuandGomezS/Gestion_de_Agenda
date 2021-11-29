@@ -1,0 +1,9 @@
+{
+    "connect":{
+        "server": "localhost",
+        "user": "root",
+        "password": "",
+        "database": "agenda",
+        "port":"3306"
+    }
+}
