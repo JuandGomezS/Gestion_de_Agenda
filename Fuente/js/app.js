@@ -139,8 +139,16 @@ addContactF.addEventListener("submit", async (event) => {
         }
     }
     try {
-        await fetch(options.URL, options);
+        let response=await fetch(options.URL, options);
+        let repeat =await response.json();
+        let sw=parseInt(repeat.result.status_id);
         setTimeout(() => {
+            sw==400 ?
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "CONTACTO YA EXISTE"
+            }):
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -199,8 +207,17 @@ addUForm.addEventListener("submit", async (event) => {
     }
     let myModal1 = bootstrap.Modal.getInstance(document.getElementById('addUModal'));
     try {
-        await fetch(options.URL, options);
+        let response=await fetch(options.URL, options);
+        let repeat =await response.json();
+        let sw=parseInt(repeat.result.status_id);
+
         setTimeout(async () => {
+            sw==400 ?
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "USUARIO YA EXISTE"
+            }):
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',

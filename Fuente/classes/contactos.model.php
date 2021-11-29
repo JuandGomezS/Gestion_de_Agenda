@@ -42,18 +42,22 @@ class contact extends connect{
             );
             return $response;
         }else{
-            return $_responses->status_500();
+            return $_responses->status_400();
         }
     }
 
     private function insertContact(){
-        $query = "INSERT INTO " . $this->table . " (nombre, numero, tipo_numero, parentesco, fk_usuarios)
-        values
-        ('" . $this->names . "','" . $this->tel . "','" . $this->telType ."','" . $this->kin . "','"  . $this->fk ."')"; 
-        $resp = parent::nonQueryId($query);
-        if($resp){
-             return $resp;
-        }else{
+        try {
+            $query = "INSERT INTO " . $this->table . " (nombre, numero, tipo_numero, parentesco, fk_usuarios)
+            values
+            ('" . $this->names . "','" . $this->tel . "','" . $this->telType ."','" . $this->kin . "','"  . $this->fk ."')"; 
+            $resp = parent::nonQueryId($query);
+            if($resp){
+                 return $resp;
+            }else{
+                return 0;
+            }
+        } catch (Exception $e) {
             return 0;
         }
     }

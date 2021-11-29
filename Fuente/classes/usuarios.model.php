@@ -45,6 +45,7 @@ class users extends connect{
 
         $resp = $this->insertUser();
 
+
         if($resp){
             $response = $_responses->response;
             $response["result"] = array(
@@ -52,18 +53,22 @@ class users extends connect{
             );
             return $response;
         }else{
-            return $_responses->status_500();
+            return $_responses->status_400();
         }
     }
 
     private function insertUser(){
-        $query = "INSERT INTO " . $this->table . " (identificacion, nombres, apellidos, fecha_nacimiento, genero)
-        values
-        ('" . $this->identification . "','" . $this->names . "','" . $this->lastName ."','" . $this->birthDate . "','"  . $this->gender ."')"; 
-        $resp = parent::nonQueryId($query);
-        if($resp){
-             return $resp;
-        }else{
+        try {
+            $query = "INSERT INTO " . $this->table . " (identificacion, nombres, apellidos, fecha_nacimiento, genero)
+            values
+            ('" . $this->identification . "','" . $this->names . "','" . $this->lastName ."','" . $this->birthDate . "','"  . $this->gender ."')"; 
+            $resp = parent::nonQueryId($query);
+            if($resp){
+                 return $resp;
+            }else{
+                return 0;
+            }
+        } catch (Exception $e) {
             return 0;
         }
     }

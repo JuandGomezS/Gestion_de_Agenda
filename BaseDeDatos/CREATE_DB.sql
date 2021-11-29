@@ -62,13 +62,15 @@ CREATE TABLE `usuarios` (
 --
 ALTER TABLE `contactos`
   ADD PRIMARY KEY (`id_contactos`),
+  ADD UNIQUE KEY `numero` (`numero`),
   ADD KEY `fk_cont_usua` (`fk_usuarios`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuarios`);
+  ADD PRIMARY KEY (`id_usuarios`),
+  ADD UNIQUE KEY `identificacion` (`identificacion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -78,13 +80,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `contactos`
 --
 ALTER TABLE `contactos`
-  MODIFY `id_contactos` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id_contactos` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuarios` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id_usuarios` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
